@@ -1,0 +1,15 @@
+# Optional AI Model Dependencies
+# Install based on your chosen AI provider:
+
+# For Google Gemini
+google-generativeai>=0.3.0
+
+# For OpenAI
+openai>=1.0.0
+
+# For Ollama/LM Studio (requests is already in requirements.txt)
+# No additional packages needed - uses REST API
+
+# For advanced NLP features
+transformers>=4.30.0
+torch>=2.0.0

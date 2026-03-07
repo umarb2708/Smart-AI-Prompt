@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimize Prompts</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block content %}
+    <div class="container">
+        <h1>Optimized Prompts</h1>
+        <p>Your optimized prompts are displayed below:</p>
+        <ul>
+            {% for prompt in optimized_prompts %}
+                <li>{{ prompt }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('main.index') }}" class="btn">Back to Home</a>
+    </div>
+    {% endblock %}
+</body>
+</html>

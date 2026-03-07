@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interact with AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% include 'base.html' %}
+    <div class="container">
+        <h1>Interact with AI</h1>
+        <form id="interaction-form">
+            <label for="user-input">Your Input:</label>
+            <textarea id="user-input" name="user_input" rows="4" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="ai-response">
+            <h2>AI Response:</h2>
+            <p id="response-text"></p>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

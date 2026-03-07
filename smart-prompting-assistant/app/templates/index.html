@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart AI Prompting Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Smart AI Prompting Assistant</h1>
+        <p>Your tool for optimizing prompts and enhancing AI interactions.</p>
+    </header>
+    <main>
+        <section>
+            <h2>Objectives</h2>
+            <ul>
+                <li>Automate prompt optimization</li>
+                <li>Evaluate prompt strategies</li>
+                <li>Improve AI interaction</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Get Started</h2>
+            <form action="{{ url_for('prompts.handle_prompt') }}" method="post">
+                <label for="user_input">Enter your command:</label>
+                <input type="text" id="user_input" name="user_input" required>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Smart AI Prompting Assistant</p>
+    </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
