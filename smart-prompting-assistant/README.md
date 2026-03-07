@@ -55,7 +55,7 @@ This project is a web application designed to assist users in optimizing their p
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/umarb2708/Smart-AI-Prompt.git
    ```
 
 2. Navigate to the project directory:
