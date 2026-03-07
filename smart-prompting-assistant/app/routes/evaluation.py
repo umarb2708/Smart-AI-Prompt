@@ -1,7 +1,11 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template
 from app.models.evaluation import Evaluation
 
 evaluation_bp = Blueprint('evaluation', __name__)
+
+@evaluation_bp.route('/evaluate', methods=['GET'])
+def evaluate():
+    return render_template('evaluate.html')
 
 @evaluation_bp.route('/evaluate', methods=['POST'])
 def evaluate_prompt():

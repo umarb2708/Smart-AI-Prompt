@@ -16,3 +16,20 @@ class PromptOptimizer:
         # Logic to reformat the prompt for better AI interaction
         reformatted_prompt = prompt.replace("?", " ?").strip()  # Example reformatting
         return reformatted_prompt
+
+
+# Create a default instance
+_optimizer = PromptOptimizer()
+
+# Export standalone functions for backward compatibility
+def optimize_prompt(prompt):
+    """Optimize a prompt using the default optimizer instance."""
+    return _optimizer.optimize_prompt(prompt.content if hasattr(prompt, 'content') else str(prompt))
+
+def evaluate_prompt(prompt):
+    """Evaluate a prompt using the default optimizer instance."""
+    return _optimizer.evaluate_prompt(prompt.content if hasattr(prompt, 'content') else str(prompt))
+
+def reformat_prompt(prompt):
+    """Reformat a prompt using the default optimizer instance."""
+    return _optimizer.reformat_prompt(prompt.content if hasattr(prompt, 'content') else str(prompt))

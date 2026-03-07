@@ -14,6 +14,7 @@ if not exist "venv\" (
 )
 
 REM Activate virtual environment
+echo [INFO] Activating virtual environment...
 call venv\Scripts\activate.bat
 
 REM Check if activation was successful
@@ -23,8 +24,13 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
+echo [OK] Virtual environment activated
+echo.
+
 REM Run the application
-echo [INFO] Running application...
+echo [INFO] Starting Flask application...
+echo [INFO] Application will be available at http://127.0.0.1:5000
+echo [INFO] Press Ctrl+C to stop the server
 echo.
 python run.py
 

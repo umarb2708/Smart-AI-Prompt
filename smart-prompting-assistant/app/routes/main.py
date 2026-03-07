@@ -6,12 +6,20 @@ main = Blueprint('main', __name__)
 def index():
     return render_template('index.html')
 
+@main.route('/optimize', methods=['GET'])
+def optimize_page():
+    return render_template('optimize.html', optimized_prompts=[])
+
 @main.route('/optimize', methods=['POST'])
 def optimize():
     prompt_input = request.form.get('prompt')
     # Logic for optimizing the prompt would go here
     optimized_prompt = prompt_input  # Placeholder for optimized prompt
-    return render_template('optimize.html', optimized_prompt=optimized_prompt)
+    return render_template('optimize.html', optimized_prompts=[optimized_prompt])
+
+@main.route('/evaluate', methods=['GET'])
+def evaluate_page():
+    return render_template('evaluate.html', results=None)
 
 @main.route('/evaluate', methods=['POST'])
 def evaluate():
@@ -19,6 +27,10 @@ def evaluate():
     # Logic for evaluating the prompt strategy would go here
     evaluation_results = prompt_strategy  # Placeholder for evaluation results
     return render_template('evaluate.html', results=evaluation_results)
+
+@main.route('/interact', methods=['GET'])
+def interact_page():
+    return render_template('interact.html', ai_response=None)
 
 @main.route('/interact', methods=['POST'])
 def interact():
