@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify, render_template, redirect, url_for
 from app.models.prompt import Prompt
 from app.services.prompt_optimizer import optimize_prompt
+from app.services.model_recommender import get_recommendation_summary
 
 prompts_bp = Blueprint('prompts', __name__)
 
@@ -14,8 +15,12 @@ def create_prompt():
     
     prompt = Prompt(user_input)
     optimized_prompt = optimize_prompt(prompt)
+    recommendations = get_recommendation_summary(user_input)
     
-    return jsonify({'optimized_prompt': optimized_prompt}), 200
+    return jsonify({
+        'optimized_prompt': optimized_prompt,
+        'model_recommendations': recommendations
+    }), 200
 
 @prompts_bp.route('/handle', methods=['POST'])
 def handle_prompt():
@@ -27,7 +32,13 @@ def handle_prompt():
     prompt = Prompt(user_input)
     optimized_prompt = optimize_prompt(prompt)
     
-    return render_template('optimize.html', optimized_prompts=[optimized_prompt])
+    # Get model recommendations
+    recommendation_summary = get_recommendation_summary(user_input)
+    
+    return render_template('optimize.html', 
+                         optimized_prompts=[optimized_prompt],
+                         original_prompt=user_input,
+                         recommendations=recommendation_summary)
 
 @prompts_bp.route('/optimize', methods=['GET'])
 def optimize():

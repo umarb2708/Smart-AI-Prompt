@@ -116,9 +116,32 @@ if ($LASTEXITCODE -ne 0) {
 Write-Host "[OK] All requirements installed" -ForegroundColor Green
 Write-Host ""
 
+# Create .env file from .env.example if it doesn't exist
+if (-not (Test-Path ".env")) {
+    Write-Host "[INFO] Creating .env file from .env.example..." -ForegroundColor Yellow
+    if (Test-Path ".env.example") {
+        Copy-Item ".env.example" ".env"
+        Write-Host "[OK] .env file created successfully" -ForegroundColor Green
+        Write-Host "[IMPORTANT] Please edit .env file and add your API keys" -ForegroundColor Yellow
+        Write-Host ""
+    }
+    else {
+        Write-Host "[WARNING] .env.example not found, skipping .env creation" -ForegroundColor Yellow
+        Write-Host ""
+    }
+}
+else {
+    Write-Host "[INFO] .env file already exists, skipping creation" -ForegroundColor Yellow
+    Write-Host ""
+}
+
 Write-Host "====================================" -ForegroundColor Cyan
 Write-Host "Setup completed successfully!" -ForegroundColor Green
 Write-Host "====================================" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "NEXT STEPS:" -ForegroundColor Cyan
+Write-Host "  1. Edit the .env file and add your Google Gemini API key" -ForegroundColor Yellow
+Write-Host "     Get your API key from: https://makersuite.google.com/app/apikey" -ForegroundColor Gray
 Write-Host ""
 Write-Host "To run the application:" -ForegroundColor Yellow
 Write-Host "  1. Activate virtual environment: venv\Scripts\activate" -ForegroundColor Gray

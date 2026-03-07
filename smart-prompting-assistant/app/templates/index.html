@@ -8,30 +8,207 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to the Smart AI Prompting Assistant</h1>
-        <p>Your tool for optimizing prompts and enhancing AI interactions.</p>
+        <h1>🚀 Smart AI Prompting Assistant</h1>
+        <p>Transform your basic prompts into powerful, optimized AI instructions</p>
     </header>
     <main>
-        <section>
-            <h2>Objectives</h2>
-            <ul>
-                <li>Automate prompt optimization</li>
-                <li>Evaluate prompt strategies</li>
-                <li>Improve AI interaction</li>
-            </ul>
-        </section>
-        <section>
-            <h2>Get Started</h2>
-            <form action="{{ url_for('prompts.handle_prompt') }}" method="post">
-                <label for="user_input">Enter your command:</label>
-                <input type="text" id="user_input" name="user_input" required>
-                <button type="submit">Submit</button>
+        <section class="hero-section">
+            <h2>📝 Prompt Optimizer</h2>
+            <p class="description">Enter your prompt below and we'll enhance it with best practices for better AI responses:</p>
+            
+            <form action="{{ url_for('prompts.handle_prompt') }}" method="post" class="prompt-form">
+                <div class="form-group">
+                    <label for="user_input">Your Prompt:</label>
+                    <textarea 
+                        id="user_input" 
+                        name="user_input" 
+                        rows="4" 
+                        placeholder="Example: Write a blog post about AI"
+                        required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">✨ Optimize My Prompt</button>
             </form>
+        </section>
+        
+        <section class="features">
+            <h2>🎯 What We Do</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🔍 Add Clarity</h3>
+                    <p>We make your prompts clearer and more specific</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📊 Add Structure</h3>
+                    <p>We organize your requests in a logical format</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎨 Add Context</h3>
+                    <p>We provide necessary background for better responses</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚡ Improve Results</h3>
+                    <p>Get better, more accurate AI responses</p>
+                </div>
+            </div>
         </section>
     </main>
     <footer>
-        <p>&copy; 2023 Smart AI Prompting Assistant</p>
+        <p>&copy; 2026 Smart AI Prompting Assistant | Enhance Your AI Experience</p>
     </footer>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            margin: 0;
+            color: #667eea;
+            font-size: 2.5rem;
+        }
+        
+        header p {
+            margin: 0.5rem 0 0 0;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .hero-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .hero-section h2 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        
+        .description {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .prompt-form {
+            margin-top: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .features {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .features h2 {
+            color: #667eea;
+            text-align: center;
+            margin-top: 0;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .feature-card {
+            padding: 1.5rem;
+            border: 2px solid #f0f0f0;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        
+        .feature-card p {
+            color: #666;
+            margin-bottom: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: white;
+            margin-top: 2rem;
+        }
+    </style>
+    
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

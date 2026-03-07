@@ -88,9 +88,30 @@ if %errorlevel% neq 0 (
 echo [OK] All requirements installed
 echo.
 
+REM Create .env file from .env.example if it doesn't exist
+if not exist ".env" (
+    echo [INFO] Creating .env file from .env.example...
+    if exist ".env.example" (
+        copy ".env.example" ".env" >nul
+        echo [OK] .env file created successfully
+        echo [IMPORTANT] Please edit .env file and add your API keys
+        echo.
+    ) else (
+        echo [WARNING] .env.example not found, skipping .env creation
+        echo.
+    )
+) else (
+    echo [INFO] .env file already exists, skipping creation
+    echo.
+)
+
 echo ====================================
 echo Setup completed successfully!
 echo ====================================
+echo.
+echo NEXT STEPS:
+echo   1. Edit the .env file and add your Google Gemini API key
+echo      Get your API key from: https://makersuite.google.com/app/apikey
 echo.
 echo To run the application:
 echo   1. Activate virtual environment: venv\Scripts\activate

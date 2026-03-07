@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Optimize Prompts</title>
+    <title>Optimized Prompts</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
@@ -11,15 +11,298 @@
 
     {% block content %}
     <div class="container">
-        <h1>Optimized Prompts</h1>
-        <p>Your optimized prompts are displayed below:</p>
-        <ul>
-            {% for prompt in optimized_prompts %}
-                <li>{{ prompt }}</li>
-            {% endfor %}
-        </ul>
-        <a href="{{ url_for('main.index') }}" class="btn">Back to Home</a>
+        <h1>✨ Prompt Optimization Results</h1>
+        
+        {% if optimized_prompts and optimized_prompts|length > 0 %}
+            <!-- Original Prompt Section -->
+            {% if original_prompt %}
+            <div class="section-box">
+                <h2>📝 Your Original Prompt:</h2>
+                <div class="original-prompt-box">
+                    <pre>{{ original_prompt }}</pre>
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Optimized Prompt Section -->
+            <div class="section-box">
+                <h2>🚀 Enhanced Prompt:</h2>
+                <div class="optimized-prompt-box">
+                    <pre id="optimized-text">{{ optimized_prompts[0] }}</pre>
+                </div>
+                
+                <div class="actions">
+                    <button onclick="copyToClipboard('optimized-text')" class="btn">📋 Copy Enhanced Prompt</button>
+                    <a href="{{ url_for('main.index') }}" class="btn">🔄 Optimize Another</a>
+                </div>
+            </div>
+            
+            <!-- AI Model Recommendations Section -->
+            {% if recommendations %}
+            <div class="section-box recommendations-section">
+                <h2>🤖 Recommended AI Models</h2>
+                
+                <div class="task-detection">
+                    <strong>Detected Tasks:</strong>
+                    <div class="tags">
+                        {% for task in recommendations.detected_tasks %}
+                        <span class="tag">{{ task|capitalize }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="models-grid">
+                    {% for item in recommendations.recommended_models %}
+                    <div class="model-card">
+                        <div class="model-header">
+                            <h3>{{ item.model.name }}</h3>
+                            <span class="category-badge">{{ item.model.category }}</span>
+                        </div>
+                        
+                        <div class="model-info">
+                            <p><strong>Best For:</strong> {{ item.model.best_for }}</p>
+                            <p><strong>Strengths:</strong> {{ item.model.strengths }}</p>
+                            <p><strong>Context:</strong> {{ item.model.context }}</p>
+                        </div>
+                        
+                        <div class="why-recommended">
+                            <strong>Why Recommended:</strong>
+                            <ul>
+                                {% for reason in item.reasons %}
+                                <li>{{ reason }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        
+                        <div class="match-score">
+                            Match Score: <span class="score">{{ item.score }}</span>/20
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            
+        {% else %}
+            <p class="no-prompts">No prompts to display. Please submit a prompt for optimization.</p>
+            <a href="{{ url_for('main.index') }}" class="btn">Go to Home</a>
+        {% endif %}
     </div>
+    
+    <script>
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(function() {
+                alert('✓ Copied to clipboard!');
+            }, function(err) {
+                alert('Failed to copy text: ' + err);
+            });
+        }
+    </script>
+    
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .section-box {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .section-box h2 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .original-prompt-box {
+            background: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .optimized-prompt-box {
+            background: #f0f7ff;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .original-prompt-box pre,
+        .optimized-prompt-box pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0;
+            color: #333;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .task-detection {
+            margin-bottom: 1.5rem;
+        }
+        
+        .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        
+        .tag {
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .model-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            background: #fafafa;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .model-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+        
+        .model-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .model-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1.3rem;
+        }
+        
+        .category-badge {
+            background: #764ba2;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        
+        .model-info {
+            margin: 1rem 0;
+        }
+        
+        .model-info p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        
+        .why-recommended {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .why-recommended ul {
+            margin: 0.5rem 0 0 0;
+            padding-left: 1.5rem;
+        }
+        
+        .why-recommended li {
+            margin: 0.3rem 0;
+            color: #666;
+        }
+        
+        .match-score {
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #e0e0e0;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .score {
+            font-size: 1.2rem;
+            color: #4CAF50;
+        }
+        
+        .no-prompts {
+            font-size: 1.1rem;
+            color: #666;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .models-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
     {% endblock %}
 </body>
 </html>

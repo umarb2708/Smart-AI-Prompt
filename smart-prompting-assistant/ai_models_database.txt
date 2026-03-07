@@ -1,0 +1,56 @@
+# AI Models Database
+# Format: Model Name | Category | Best For | Strengths | Context Window
+
+# OpenAI Models
+GPT-4 Turbo | General Purpose | Complex reasoning, analysis, coding | Excellent reasoning, large context, multi-modal | 128K tokens
+GPT-4 | General Purpose | High-quality responses, creative writing | Superior quality, reliable, versatile | 8K tokens
+GPT-3.5 Turbo | General Purpose | Quick responses, simple tasks, chat | Fast, cost-effective, good for most tasks | 16K tokens
+GPT-4 Vision | Multi-modal | Image analysis, visual content | Image understanding, detailed descriptions | 128K tokens
+DALL-E 3 | Image Generation | Creating images from text | High-quality images, artistic style | N/A
+
+# Google Models
+Gemini Pro | General Purpose | Multi-modal tasks, long context | Large context window, versatile | 32K tokens
+Gemini Ultra | Advanced Reasoning | Complex analysis, research | Superior reasoning, comprehensive answers | 32K tokens
+PaLM 2 | General Purpose | Natural conversation, translation | Multilingual, efficient | 8K tokens
+Bard | Conversational | General queries, research | Real-time information, conversational | 4K tokens
+
+# Anthropic Models
+Claude 3 Opus | Advanced Writing | Long-form content, analysis | Excellent writing, nuanced understanding | 200K tokens
+Claude 3 Sonnet | Balanced | General tasks, coding | Fast, balanced quality/speed | 200K tokens
+Claude 3 Haiku | Quick Tasks | Fast responses, simple queries | Fastest, cost-effective | 200K tokens
+Claude 2 | General Purpose | Writing, analysis, coding | Strong reasoning, long context | 100K tokens
+
+# Meta Models
+Llama 3 70B | Open Source | General tasks, coding | Free, customizable, good performance | 8K tokens
+Llama 3 8B | Open Source | Quick tasks, edge deployment | Very fast, runs locally, efficient | 8K tokens
+Code Llama | Coding | Programming, code generation | Specialized for code, free | 16K tokens
+
+# Mistral Models
+Mistral Large | General Purpose | Complex reasoning, multilingual | Strong performance, efficient | 32K tokens
+Mistral Medium | Balanced | General tasks | Good balance, cost-effective | 32K tokens
+Mixtral 8x7B | Open Source | High-quality open alternative | Free, excellent performance | 32K tokens
+
+# Specialized Models
+Codex | Coding | Code generation, debugging | GitHub Copilot backend | 8K tokens
+Stable Diffusion | Image Generation | Image creation, editing | Free, customizable, artistic | N/A
+Whisper | Audio | Speech-to-text transcription | Multilingual, accurate | N/A
+ElevenLabs | Audio | Text-to-speech, voice cloning | Natural voices, emotional | N/A
+
+# Local/Open Source Models
+Mistral 7B | Local/Open | General tasks, runs locally | Privacy, offline, free | 8K tokens
+Falcon 40B | Local/Open | General tasks, coding | Strong open source option | 2K tokens
+Vicuna 13B | Local/Open | Chat, conversational | Good for chatbots | 2K tokens
+WizardCoder | Local/Open | Programming tasks | Code-focused, free | 16K tokens
+Orca 2 | Local/Open | Reasoning, analysis | Strong reasoning for size | 4K tokens
+
+# Task Categories:
+# - General Purpose: Versatile tasks, Q&A, general assistance
+# - Coding: Programming, debugging, code generation, technical docs
+# - Writing: Creative writing, essays, articles, content creation
+# - Analysis: Data analysis, research, complex reasoning
+# - Multi-modal: Image/video understanding, vision tasks
+# - Conversational: Chat, dialogue, natural conversation
+# - Translation: Language translation, localization
+# - Summarization: Text summarization, content condensing
+# - Math/Science: Mathematical problems, scientific queries
+# - Creative: Art, music, creative projects
