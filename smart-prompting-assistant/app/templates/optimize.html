@@ -14,6 +14,20 @@
         <h1>✨ Prompt Optimization Results</h1>
         
         {% if optimized_prompts and optimized_prompts|length > 0 %}
+            <!-- Prompt Category Badge -->
+            <div class="category-banner">
+                <div class="category-badge-large {{ prompt_category }}">
+                    {% if prompt_category == 'zero-shot' %}
+                        🎯 Zero-Shot Prompt
+                    {% elif prompt_category == 'few-shot' %}
+                        🎓 Few-Shot Prompt
+                    {% else %}
+                        🧠 Chain-of-Thought Prompt
+                    {% endif %}
+                </div>
+                <p class="category-explanation">{{ category_reasoning }}</p>
+            </div>
+            
             <!-- Original Prompt Section -->
             {% if original_prompt %}
             <div class="section-box">
@@ -26,9 +40,27 @@
             
             <!-- Optimized Prompt Section -->
             <div class="section-box">
-                <h2>🚀 Enhanced Prompt:</h2>
-                <div class="optimized-prompt-box">
+                <h2>
+                    {% if prompt_category == 'zero-shot' %}
+                        🎯 Clean Prompt (Minimal Changes):
+                    {% elif prompt_category == 'few-shot' %}
+                        🎓 Enhanced Prompt (With Examples):
+                    {% else %}
+                        🧠 Optimized Chain-of-Thought Prompt:
+                    {% endif %}
+                </h2>
+                <div class="optimized-prompt-box {{ prompt_category }}">
                     <pre id="optimized-text">{{ optimized_prompts[0] }}</pre>
+                </div>
+                
+                <div class="optimization-info">
+                    {% if prompt_category == 'zero-shot' %}
+                        <p>✅ This is a straightforward prompt that works well as-is. Minimal enhancement applied.</p>
+                    {% elif prompt_category == 'few-shot' %}
+                        <p>✅ Enhanced with examples and demonstrations to guide better AI responses.</p>
+                    {% else %}
+                        <p>✅ Structured for step-by-step reasoning to produce detailed, logical responses.</p>
+                    {% endif %}
                 </div>
                 
                 <div class="actions">
@@ -111,6 +143,72 @@
             color: #667eea;
             text-align: center;
             margin-bottom: 2rem;
+        }
+        
+        .category-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: white;
+        }
+        
+        .category-badge-large {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .category-badge-large.zero-shot {
+            border: 3px solid #4CAF50;
+        }
+        
+        .category-badge-large.few-shot {
+            border: 3px solid #FF9800;
+        }
+        
+        .category-badge-large.chain-of-thought {
+         
+        
+        .optimized-prompt-box.zero-shot {
+            border-color: #4CAF50;
+            background: #e8f5e9;
+        }
+        
+        .optimized-prompt-box.few-shot {
+            border-color: #FF9800;
+            background: #fff3e0;
+        }
+        
+        .optimized-prompt-box.chain-of-thought {
+            border-color: #2196F3;
+            background: #e3f2fd;
+        }
+        
+        .optimization-info {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .optimization-info p {
+            margin: 0;
+            color: #555;
+            font-size: 1.05rem;
+        }   border: 3px solid #2196F3;
+        }
+        
+        .category-explanation {
+            font-size: 1.1rem;
+            margin: 0;
+            opacity: 0.95;
         }
         
         .section-box {

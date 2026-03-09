@@ -219,26 +219,9 @@ Think through this carefully and show all your reasoning."""
         
         return prompt
 
-    def _add_clarity(self, prompt):
-        """Add clarity to the prompt."""
-        return f"Please clearly explain: {prompt}"
-
-    def _add_structure(self, prompt):
-        """Add structure to the prompt."""
-        return f"Provide a structured response to: {prompt}"
-
-    def _add_specificity(self, prompt):
-        """Add specificity to the prompt."""
-        return f"Provide specific details about: {prompt}"
-
-    def _add_context(self, prompt):
-        """Add context to the prompt."""
-        return f"With appropriate context, please address: {prompt}"
-
 
 # Create a default instance
 _optimizer = PromptOptimizer()
-
 
 # Export standalone functions for backward compatibility
 def optimize_prompt(prompt):
@@ -260,11 +243,9 @@ def optimize_prompt(prompt):
         'reasoning': reasoning
     }
 
-
 def evaluate_prompt(prompt):
     """Evaluate a prompt using the default optimizer instance."""
     return _optimizer.evaluate_prompt(prompt.content if hasattr(prompt, 'content') else str(prompt))
-
 
 def reformat_prompt(prompt):
     """Reformat a prompt using the default optimizer instance."""

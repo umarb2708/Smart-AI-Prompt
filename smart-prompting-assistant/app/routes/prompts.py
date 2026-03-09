@@ -30,14 +30,16 @@ def handle_prompt():
         return redirect(url_for('main.index'))
     
     prompt = Prompt(user_input)
-    optimized_prompt = optimize_prompt(prompt)
+    optimization_result = optimize_prompt(prompt)
     
     # Get model recommendations
     recommendation_summary = get_recommendation_summary(user_input)
     
     return render_template('optimize.html', 
-                         optimized_prompts=[optimized_prompt],
+                         optimized_prompts=[optimization_result['optimized_prompt']],
                          original_prompt=user_input,
+                         prompt_category=optimization_result['category'],
+                         category_reasoning=optimization_result['reasoning'],
                          recommendations=recommendation_summary)
 
 @prompts_bp.route('/optimize', methods=['GET'])
